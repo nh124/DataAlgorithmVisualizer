@@ -1,6 +1,6 @@
 import { React } from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
-import DelayRender from "../Hooks/DelayRender.tsx";
+import DelayRender from "../../Hooks/DelayRender.tsx";
 const Node = ({ node, nodeStatus }) => {
   const shouldRender = DelayRender(1000);
   return (

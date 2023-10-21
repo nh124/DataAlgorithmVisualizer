@@ -1,5 +1,5 @@
 import { React } from "react";
-import Node from "./Node.tsx";
+import Node from "../Node/index.tsx";
 
 const NodeTraversal = ({ nodes }) => {
   return (

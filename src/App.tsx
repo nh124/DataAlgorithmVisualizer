@@ -1,63 +1,27 @@
 import { React, useState } from "react";
-import NodeTraversal from "./Components/NodeTraversal.tsx";
+import NodeTraversal from "./Components/NodeTraversal/NodeTraversal.tsx";
 import linkedList from "./Algorithms/linklist.ts";
+import AddNode from "./Functions/AddNode/index.tsx";
+import DeleteNode from "./Functions/DeleteNode/index.tsx";
+import SidePanel from "./Components/SidePanel/index.tsx";
 
 type NodeType = {
-  value: number; // Change the type as needed
+  value: number;
   isVisible: boolean;
 };
-
 const ll = new linkedList<NodeType>();
-
 const App = () => {
-  const [inputNode, setInputNode] = useState(null);
   const [nodes, setNodes] = useState([]);
-
-  const deleteLastNode = () => {
-    let nodesCopy = [...nodes];
-    const lastItem = nodesCopy[nodesCopy.length - 1];
-    lastItem.isVisible = false;
-    setNodes(nodesCopy);
-    setTimeout(() => {
-      ll.deleteLast();
-      setNodes(ll.display());
-    }, 1000);
-    console.log(nodes);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (nodes.length <= 13) {
-      ll.add({
-        value: inputNode,
-        isVisible: true,
-      });
-      setNodes(ll.display());
-      setInputNode("");
-    } else {
-      alert("max has been reached");
-    }
-  };
-  const onChange = (event) => {
-    setInputNode(event.target.value);
-  };
   return (
-    <div className="w-full h-screen bg-slate-200 flex justify-center items-center flex-col">
-      <form action="" onSubmit={handleSubmit}>
-        <label>
-          Enter Node:
-          <input
-            type="number"
-            value={inputNode}
-            onChange={onChange}
-            required
-            max="10"
-          />
-        </label>
-        <input type="submit" className="hover:cursor-pointer" />
-      </form>
-      <button onClick={deleteLastNode}>Delete</button>
-      <NodeTraversal nodes={nodes} />
+    <div className="flex flex-row">
+      <SidePanel />
+      <div className="flex flex-col w-full h-screen">
+        <div className="w-full h-[20%] bg-slate-200 flex flex-col px-5 py-5 gap-5">
+          <AddNode ll={ll} setNodes={setNodes} nodes={nodes} />
+          <DeleteNode ll={ll} setNodes={setNodes} nodes={nodes} />
+        </div>
+        <NodeTraversal nodes={nodes} />
+      </div>
     </div>
   );
 };
