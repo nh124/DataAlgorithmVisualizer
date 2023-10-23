@@ -14,6 +14,7 @@ const Node = ({ node, nodeStatus }) => {
       >
         {node}
       </div>
+
       {shouldRender ? (
         <div className={`animate-slideAnimation absolute right-0 z-0}`}>
           <FaArrowRightLong size={30} color="#2E7D32" />

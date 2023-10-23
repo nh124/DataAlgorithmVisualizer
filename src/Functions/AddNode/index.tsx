@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import SlideContext from "../../Context/SlideContext";
 
 const AddNode = ({ ll, setNodes, nodes }) => {
   const [inputNode, setInputNode] = useState("");
-
+  const { addOrDelete, setAddOrDelete, setSlideX, slideX } =
+    useContext(SlideContext);
   const handleSubmit = (e) => {
     e.preventDefault();
     if (nodes.length <= 13) {
@@ -12,6 +14,10 @@ const AddNode = ({ ll, setNodes, nodes }) => {
       });
       setNodes(ll.display());
       setInputNode("");
+      setAddOrDelete(true);
+      if (nodes.length >= 1) {
+        setSlideX(slideX + 80);
+      }
     } else {
       alert("Max limit reached");
     }

@@ -1,12 +1,19 @@
-import React, { useState } from "react";
-
+// import React, { useState } from "react";
+import { useContext } from "react";
+import SlideContext from "../../Context/SlideContext";
 const DeleteNode = ({ ll, setNodes, nodes }) => {
+  const { addOrDelete, setAddOrDelete, setSlideX, slideX } =
+    useContext(SlideContext);
   const deleteLastNode = () => {
     if (nodes.length > 0) {
       let nodesCopy = [...nodes];
       const lastItem = nodesCopy[nodesCopy.length - 1];
       lastItem.isVisible = false;
       setNodes(nodesCopy);
+      setAddOrDelete(false);
+      if (nodes.length > 1) {
+        setSlideX(slideX - 80);
+      }
 
       setTimeout(() => {
         ll.deleteLast();
