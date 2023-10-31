@@ -3,8 +3,7 @@ import SlideContext from "../../Context/SlideContext";
 
 const AddNode = ({ ll, setNodes, nodes }) => {
   const [inputNode, setInputNode] = useState("");
-  const { addOrDelete, setAddOrDelete, setSlideX, slideX } =
-    useContext(SlideContext);
+  const { setAddOrDelete, setSlideX, slideX } = useContext(SlideContext);
   const handleSubmit = (e) => {
     e.preventDefault();
     if (nodes.length <= 13) {
@@ -17,6 +16,7 @@ const AddNode = ({ ll, setNodes, nodes }) => {
       setAddOrDelete(true);
       if (nodes.length >= 1) {
         setSlideX(slideX + 80);
+        console.log(slideX);
       }
     } else {
       alert("Max limit reached");
@@ -31,15 +31,11 @@ const AddNode = ({ ll, setNodes, nodes }) => {
     <form
       action=""
       onSubmit={handleSubmit}
-      className="flex h-[100px] items-center gap-3 px-4"
+      className="flex h-[100px] items-center gap-3 px-4 text-white w-fit"
     >
-      <div class="flex flex-col gap-3">
+      <div class="flex flex-row gap-3">
         <input
-          type="submit"
-          className="hover:cursor-pointer w-full h-auto bg-gray-700 rounded-sm py-2 shadow-lg hover:scale-105 ease-in-out duration-300"
-        />
-        <input
-          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          class="shadow appearance-none border border-black rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outlin bg-[#52796f]"
           id="Node"
           type="number"
           placeholder="Ex. 4"
@@ -47,6 +43,10 @@ const AddNode = ({ ll, setNodes, nodes }) => {
           onChange={onChange}
           required
           max="10"
+        />
+        <input
+          type="submit"
+          className="hover:cursor-pointer w-full h-auto bg-[#52796f] rounded-sm py-2 shadow-lg hover:scale-105 ease-in-out duration-300"
         />
       </div>
     </form>

@@ -2,8 +2,7 @@
 import { useContext } from "react";
 import SlideContext from "../../Context/SlideContext";
 const DeleteNode = ({ ll, setNodes, nodes }) => {
-  const { addOrDelete, setAddOrDelete, setSlideX, slideX } =
-    useContext(SlideContext);
+  const { setAddOrDelete, setSlideX, slideX } = useContext(SlideContext);
   const deleteLastNode = () => {
     if (nodes.length > 0) {
       let nodesCopy = [...nodes];
@@ -11,10 +10,8 @@ const DeleteNode = ({ ll, setNodes, nodes }) => {
       lastItem.isVisible = false;
       setNodes(nodesCopy);
       setAddOrDelete(false);
-      if (nodes.length > 1) {
-        setSlideX(slideX - 80);
-      }
 
+      setSlideX(slideX - 80);
       setTimeout(() => {
         ll.deleteLast();
         setNodes(ll.display());
@@ -23,8 +20,13 @@ const DeleteNode = ({ ll, setNodes, nodes }) => {
   };
 
   return (
-    <div className="flex w-[14%] py-2 hover:cursor-pointer h-auto bg-gray-700 rounded-sm shadow-lg hover:scale-105 ease-in-out duration-300 justify-center ml-5">
-      <button onClick={deleteLastNode}>Delete Last Node</button>
+    <div className="flex h-[100px] items-center gap-3 px-4 text-white w-fit">
+      <button
+        className="hover:cursor-pointer w-full h-auto bg-[#52796f] rounded-sm py-2 shadow-lg hover:scale-105 ease-in-out duration-300 px-3"
+        onClick={deleteLastNode}
+      >
+        Delete Last Node
+      </button>
     </div>
   );
 };
