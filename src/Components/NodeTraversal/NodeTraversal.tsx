@@ -1,40 +1,51 @@
 import { BsArrow90DegUp } from "react-icons/bs";
 import { BsArrow90DegLeft } from "react-icons/bs";
 import Node from "../Node/index.tsx";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import SlideContext from "../../Context/SlideContext.tsx";
-const NodeTraversal = ({ nodes, startAnimation, setStartAnimation }) => {
+import ArrowComponent from "../ArrowComponent/ArrowComponent.tsx";
+import { NodeType } from "../../Algorithms/NodeType.ts";
+import StoreIndexContext from "../../Context/StoreIndexContext.tsx";
+const NodeTraversal = ({
+  nodes,
+  startAnimation,
+  setStartAnimation,
+}: {
+  nodes: NodeType[];
+  startAnimation: boolean;
+  setStartAnimation: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const { addOrDelete, setAddOrDelete, slideX } = useContext(SlideContext);
-  const [style1, setStyle1] = useState({
+  const { Animate } = useContext(StoreIndexContext);
+  const [styleRight, setStyleRight] = useState({
     transform: `translateX(${slideX}px)`,
   });
-  const [style2, setStyle2] = useState({
+  const [styleLeft, setStyleLeft] = useState({
     transform: `translateX(${slideX}px)`,
   });
   const [currentIndex, setCurrentIndex] = useState(-1);
-  const [nodeStatus1, setNodeStatus1] = useState("T");
-  const [nodeStatus2, setNodeStatus2] = useState("H");
+  const [counter, setCounter] = useState(0);
+  const [nodeStatusRight, setNodeStatusRight] = useState("T");
+  const [nodeStatusLeft, setNodeStatusLeft] = useState("H");
 
+  const updateStyleForArrow = (direction: string, distance: number) => {
+    const updatedStyle = {
+      transform: `translateX(${distance}px)`,
+      transition: "transform 0.3s ease-in-out",
+    };
+    if (direction === "right") setStyleRight(updatedStyle);
+    if (direction === "left") setStyleLeft(updatedStyle);
+  };
   useEffect(() => {
     if (nodes.length < 1 || addOrDelete === null) {
       return;
     } else if (nodes.length > 1) {
-      if (addOrDelete === true) {
-        const updatedStyle = {
-          transform: `translateX(${slideX}px)`,
-          transition: "transform 0.3s ease-in-out",
-        };
-        setStyle1(updatedStyle);
-      } else if (addOrDelete === false) {
-        const updatedStyle = {
-          transform: `translateX(${slideX}px)`,
-          transition: "transform 0.3s ease-in-out",
-        };
-        setStyle2(updatedStyle);
+      updateStyleForArrow("right", slideX);
+      if (currentIndex + 1 === nodes.length) {
         setTimeout(() => {
-          setStyle1(updatedStyle);
-        }, 2000);
+          updateStyleForArrow("right", slideX);
+        }, 500);
       }
     }
   }, [nodes.length, addOrDelete, setAddOrDelete]);
@@ -43,12 +54,23 @@ const NodeTraversal = ({ nodes, startAnimation, setStartAnimation }) => {
     if (startAnimation && currentIndex < nodes.length) {
       let timeout = setTimeout(() => {
         setCurrentIndex(currentIndex + 1);
+        let SlidePx = Animate ? nodes.length - 1 : nodes.length - 2;
+        if (counter <= SlidePx) {
+          setCounter(counter + 1);
+          let AnimateSlidePx = 80 * counter + 4;
+          updateStyleForArrow("left", AnimateSlidePx);
+        }
+        setTimeout(() => {
+          let AnimateSlidePx = 4;
+          updateStyleForArrow("left", AnimateSlidePx);
+        }, 5000);
         return () => {
           clearTimeout(timeout);
         };
       }, 1000);
     } else {
       setCurrentIndex(-1);
+      setCounter(0);
       setStartAnimation(false);
     }
   }, [startAnimation, currentIndex]);
@@ -65,33 +87,29 @@ const NodeTraversal = ({ nodes, startAnimation, setStartAnimation }) => {
                 nodeStatus={value.isVisible}
                 currentIndex={currentIndex}
                 index={index}
-                startAnimation={startAnimation}
+                length={nodes.length}
+                startAddAnimation={addOrDelete}
+                Arrow={
+                  <ArrowComponent
+                    IconLeft={
+                      <BsArrow90DegLeft
+                        size={30}
+                        style={{ color: "#84a98c", rotate: "90deg" }}
+                      />
+                    }
+                    IconUp={
+                      <BsArrow90DegUp size={30} style={{ color: "#84a98c" }} />
+                    }
+                    nodeStatusRight={nodeStatusRight}
+                    nodeStatusLeft={nodeStatusLeft}
+                    styleRight={styleRight}
+                    styleLeft={styleLeft}
+                  />
+                }
               />
             );
           })}
         </div>
-
-        {nodes.length > 0 && (
-          <div className="flex flex-row absolute top-[9%] left-0 gap-2">
-            <div
-              className={`flex flex-row gap-3 w-fit animate-slideAnimation`}
-              style={style2}
-            >
-              <span className="flex mt-3">{nodeStatus2}</span>
-              <BsArrow90DegLeft
-                size={30}
-                style={{ color: "#84a98c", rotate: "90deg" }}
-              />
-            </div>
-            <div
-              className={`flex flex-row gap-3 w-fit animate-slideAnimation`}
-              style={style1}
-            >
-              <BsArrow90DegUp size={30} style={{ color: "#84a98c" }} />
-              <span className="flex mt-3">{nodeStatus1}</span>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );

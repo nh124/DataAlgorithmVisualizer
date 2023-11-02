@@ -71,8 +71,9 @@ export default class LinkedList<T> {
   search(val: T): number {
     let current = this.head;
     let index = 0;
+
     while (current !== null) {
-      if (current.val === val) {
+      if (current.val.value === parseInt(val)) {
         return index;
       }
       current = current.next;
