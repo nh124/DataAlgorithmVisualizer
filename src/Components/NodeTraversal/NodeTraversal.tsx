@@ -7,6 +7,7 @@ import SlideContext from "../../Context/SlideContext.tsx";
 import ArrowComponent from "../ArrowComponent/ArrowComponent.tsx";
 import { NodeType } from "../../Algorithms/NodeType.ts";
 import StoreIndexContext from "../../Context/StoreIndexContext.tsx";
+import NodeContext from "../../Context/NodeContext.tsx";
 const NodeTraversal = ({
   nodes,
   startAnimation,
@@ -55,15 +56,12 @@ const NodeTraversal = ({
       let timeout = setTimeout(() => {
         setCurrentIndex(currentIndex + 1);
         let SlidePx = Animate ? nodes.length - 1 : nodes.length - 2;
+        console.log(Animate);
         if (counter <= SlidePx) {
           setCounter(counter + 1);
-          let AnimateSlidePx = 80 * counter + 4;
+          let AnimateSlidePx = 80 * counter + 20;
           updateStyleForArrow("left", AnimateSlidePx);
         }
-        setTimeout(() => {
-          let AnimateSlidePx = 4;
-          updateStyleForArrow("left", AnimateSlidePx);
-        }, 5000);
         return () => {
           clearTimeout(timeout);
         };
@@ -72,6 +70,11 @@ const NodeTraversal = ({
       setCurrentIndex(-1);
       setCounter(0);
       setStartAnimation(false);
+      let waitTime = setTimeout(() => {
+        let AnimateSlidePx = 20;
+        updateStyleForArrow("left", AnimateSlidePx);
+      }, 1000);
+      return () => clearTimeout(waitTime);
     }
   }, [startAnimation, currentIndex]);
 
@@ -81,32 +84,40 @@ const NodeTraversal = ({
         <div className="flex flex-row">
           {nodes.map((value, index) => {
             return (
-              <Node
-                key={index}
-                node={value.value}
-                nodeStatus={value.isVisible}
-                currentIndex={currentIndex}
-                index={index}
-                length={nodes.length}
-                startAddAnimation={addOrDelete}
-                Arrow={
-                  <ArrowComponent
-                    IconLeft={
-                      <BsArrow90DegLeft
-                        size={30}
-                        style={{ color: "#84a98c", rotate: "90deg" }}
-                      />
-                    }
-                    IconUp={
-                      <BsArrow90DegUp size={30} style={{ color: "#84a98c" }} />
-                    }
-                    nodeStatusRight={nodeStatusRight}
-                    nodeStatusLeft={nodeStatusLeft}
-                    styleRight={styleRight}
-                    styleLeft={styleLeft}
-                  />
-                }
-              />
+              <NodeContext.Provider
+                value={{
+                  node: value.value,
+                  nodeStatus: value.isVisible,
+                  currentIndex: currentIndex,
+                  index: index,
+                  length: nodes.length,
+                  startAddAnimation: addOrDelete,
+                  nodeStatusRight: nodeStatusRight,
+                  nodeStatusLeft: nodeStatusLeft,
+                }}
+              >
+                <Node
+                  key={index}
+                  Arrow={
+                    <ArrowComponent
+                      IconLeft={
+                        <BsArrow90DegLeft
+                          size={30}
+                          style={{ color: "#84a98c", rotate: "90deg" }}
+                        />
+                      }
+                      IconUp={
+                        <BsArrow90DegUp
+                          size={30}
+                          style={{ color: "#84a98c" }}
+                        />
+                      }
+                      styleRight={styleRight}
+                      styleLeft={styleLeft}
+                    />
+                  }
+                />
+              </NodeContext.Provider>
             );
           })}
         </div>

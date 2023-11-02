@@ -2,25 +2,12 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import DelayRender from "../../Hooks/DelayRender.tsx";
 import StoreIndexContext from "../../Context/StoreIndexContext.tsx";
 import { useContext } from "react";
-const Node = ({
-  node,
-  nodeStatus,
-  index,
-  currentIndex,
-  length,
-  startAddAnimation,
-  Arrow,
-}: {
-  node: number;
-  nodeStatus: boolean;
-  index: number;
-  currentIndex: number;
-  length: number;
-  startAddAnimation: boolean;
-  Arrow: React.ReactNode;
-}) => {
+import NodeContext from "../../Context/NodeContext.tsx";
+const Node = ({ Arrow }: { Arrow: React.ReactNode }) => {
   const shouldRender = DelayRender(1000);
   const { foundIndex, Animate } = useContext(StoreIndexContext);
+  const { currentIndex, index, startAddAnimation, node, nodeStatus, length } =
+    useContext(NodeContext);
   return (
     <div className="flex flex-col w-[80px]">
       <div

@@ -3,7 +3,7 @@ import { createContext } from "react";
 const SlideContext = createContext({
   addOrDelete: false,
   setAddOrDelete: (value: boolean) => {},
-  slideX: 4,
+  slideX: 20,
   setSlideX: (value: number) => {},
 });
 

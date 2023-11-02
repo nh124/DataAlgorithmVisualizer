@@ -13,7 +13,7 @@ const ll = new linkedList<NodeType>();
 const App = () => {
   const [addOrDelete, setAddOrDelete] = useState(false);
   const [nodes, setNodes] = useState<NodeType[]>([]);
-  const [slideX, setSlideX] = useState(4);
+  const [slideX, setSlideX] = useState(20);
   const [startAnimation, setStartAnimation] = useState(false);
   const [foundIndex, setFoundIndex] = useState(-1);
   const [Animate, setAnimate] = useState(false);
