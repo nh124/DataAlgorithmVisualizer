@@ -25,9 +25,9 @@ const AddNode = ({
       setNodes(ll.display());
       setInputNode("");
       setAddOrDelete(true);
-      let startAddAnimation = setTimeout(() => {
-        setAddOrDelete(false);
-      }, 500);
+      // let startAddAnimation = setTimeout(() => {
+      //   setAddOrDelete();
+      // }, 500);
       if (nodes.length >= 1) {
         setSlideX(slideX + 80);
       }

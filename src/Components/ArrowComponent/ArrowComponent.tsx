@@ -14,20 +14,24 @@ const ArrowComponent = ({
 }) => {
   const { nodeStatusRight, nodeStatusLeft } = useContext(NodeContext);
   return (
-    <div className="flex flex-row gap-2 w-[80px] absolute bottom-[-80%] right-[50%]">
+    <div className="flex flex-row gap-2 w-[80px] absolute bottom-[-120%] right-[35%] text-xs">
       <div
-        className={`flex flex-row gap-3 w-fit animate-slideAnimation`}
+        className={`flex flex-col w-fit animate-slideAnimation relative py-4`}
         style={styleLeft}
       >
-        <span className="flex mt-3">{}</span>
         {IconLeft}
+        <span className="flex absolute bottom-[-20px] w-[100px] h-[30px]">
+          {nodeStatusLeft}
+        </span>
       </div>
       <div
-        className={`flex flex-row gap-3 w-fit animate-slideAnimation`}
+        className={`flex flex-col w-fit animate-slideAnimation items-end relative py-4`}
         style={styleRight}
       >
         {IconUp}
-        <span className="flex mt-3">{nodeStatusRight}</span>
+        <span className="flex absolute bottom-[-20px] w-[100px] h-[30px] justify-end">
+          {nodeStatusRight}
+        </span>
       </div>
     </div>
   );

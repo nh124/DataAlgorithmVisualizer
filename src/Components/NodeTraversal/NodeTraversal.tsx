@@ -12,10 +12,12 @@ const NodeTraversal = ({
   nodes,
   startAnimation,
   setStartAnimation,
+  input,
 }: {
   nodes: NodeType[];
   startAnimation: boolean;
   setStartAnimation: React.Dispatch<React.SetStateAction<boolean>>;
+  input: number;
 }) => {
   const { addOrDelete, setAddOrDelete, slideX } = useContext(SlideContext);
   const { Animate } = useContext(StoreIndexContext);
@@ -41,26 +43,41 @@ const NodeTraversal = ({
   useEffect(() => {
     if (nodes.length < 1 || addOrDelete === null) {
       return;
-    } else if (nodes.length > 1) {
-      updateStyleForArrow("right", slideX);
+    } else if (nodes.length >= 1) {
+      updateStyleForArrow("right", 80 * (nodes.length - 1) + 10);
       if (currentIndex + 1 === nodes.length) {
         setTimeout(() => {
           updateStyleForArrow("right", slideX);
         }, 500);
       }
     }
-  }, [nodes.length, addOrDelete, setAddOrDelete]);
+  }, [nodes.length, addOrDelete, setAddOrDelete, nodes]);
 
   useEffect(() => {
     if (startAnimation && currentIndex < nodes.length) {
       let timeout = setTimeout(() => {
         setCurrentIndex(currentIndex + 1);
         let SlidePx = Animate ? nodes.length - 1 : nodes.length - 2;
-        console.log(Animate);
         if (counter <= SlidePx) {
           setCounter(counter + 1);
           let AnimateSlidePx = 80 * counter + 20;
           updateStyleForArrow("left", AnimateSlidePx);
+          console.log(addOrDelete);
+          if (addOrDelete)
+            setNodeStatusLeft(
+              nodes[counter].value.toString() +
+                `${nodes[counter].value === parseInt(input) ? "=" : "=/="}` +
+                input
+            );
+          if (!addOrDelete)
+            try {
+              nodes[counter + 2].value.toString();
+              setNodeStatusLeft(
+                `node->-> ${nodes[counter + 2].value.toString()}`
+              );
+            } catch (e) {
+              setNodeStatusLeft("node->-> null");
+            }
         }
         return () => {
           clearTimeout(timeout);
@@ -73,13 +90,14 @@ const NodeTraversal = ({
       let waitTime = setTimeout(() => {
         let AnimateSlidePx = 20;
         updateStyleForArrow("left", AnimateSlidePx);
+        setNodeStatusLeft("H");
       }, 1000);
       return () => clearTimeout(waitTime);
     }
   }, [startAnimation, currentIndex]);
 
   return (
-    <div className="w-full h-[80%] bg-[#354f52] flex flex-col justify-start items-start py-10 px-10 text-[#84a98c] relative">
+    <div className="w-full h-full bg-[#354f52] flex flex-col justify-start items-start py-10 px-10 text-[#84a98c] relative overflow-auto">
       <div className="flex flex-col">
         <div className="flex flex-row">
           {nodes.map((value, index) => {
@@ -98,6 +116,7 @@ const NodeTraversal = ({
               >
                 <Node
                   key={index}
+                  startAnimation={startAnimation}
                   Arrow={
                     <ArrowComponent
                       IconLeft={

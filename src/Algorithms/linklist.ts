@@ -67,6 +67,19 @@ export default class LinkedList<T> {
     this.head = current.next;
     current = null;
   }
+  reverse() {
+    // if (this.head === null) return;
+    let prev = null;
+    let current = this.head;
+    let nextNode;
+    while (current !== null) {
+      nextNode = current.next;
+      current.next = prev;
+      prev = current;
+      current = nextNode;
+    }
+    this.head = prev;
+  }
 
   search(val: T): number {
     let current = this.head;

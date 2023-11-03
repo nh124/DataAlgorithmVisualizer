@@ -1,9 +1,10 @@
 // import React, { useState } from "react";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import SlideContext from "../../Context/SlideContext";
 import Button from "../../Components/ButtonComponent/Button";
 import { NodeType } from "../../Algorithms/NodeType";
 import LinkedList from "../../Algorithms/linklist";
+import TrashIcon from "../../Components/Icons/TrashIcon";
 
 const DeleteNode = ({
   ll,
@@ -23,12 +24,13 @@ const DeleteNode = ({
       setStartAnimation(true);
       let nodesCopy = [...nodes];
       const lastItem = nodesCopy[nodesCopy.length - 1];
+      setAddOrDelete(false);
 
       setTimeout(() => {
         setNodes(nodesCopy);
-        setAddOrDelete(false);
-        setSlideX(slideX - 80);
+        slideX === 20 ? "" : setSlideX(slideX - 80);
         lastItem.isVisible = false;
+        setAddOrDelete(true);
       }, animationDuration + 1000);
 
       setTimeout(() => {
@@ -42,7 +44,18 @@ const DeleteNode = ({
     }
   };
 
-  return <Button action={deleteLastNode} value={"Delete Last Node"} />;
+  return (
+    <Button
+      action={deleteLastNode}
+      icon={<TrashIcon size={40} />}
+      value={"Delete Last Node"}
+    />
+  );
+  // return (
+  //   <div className="w-fit h-[80px] flex items-end py-4" onClick={() => }>
+  //     <TrashIcon size={40} />
+  //   </div>
+  // );
 };
 
 export default DeleteNode;

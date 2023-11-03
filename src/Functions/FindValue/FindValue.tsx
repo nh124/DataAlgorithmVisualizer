@@ -7,11 +7,14 @@ import StoreIndexContext from "../../Context/StoreIndexContext";
 const FindValue = ({
   ll,
   setStartAnimation,
+  input,
+  setInput,
 }: {
   ll: LinkedList<NodeType>;
   setStartAnimation: React.Dispatch<React.SetStateAction<boolean>>;
+  input: number;
+  setInput: React.Dispatch<React.SetStateAction<number>>;
 }) => {
-  const [input, setInput] = useState(-1);
   const [duration, setDuration] = useState(1000);
   const { foundIndex, setFoundIndex, setAnimate, Animate } =
     useContext(StoreIndexContext);
