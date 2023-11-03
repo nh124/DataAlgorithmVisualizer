@@ -47,8 +47,8 @@ const DeleteNode = ({
   return (
     <Button
       action={deleteLastNode}
-      icon={<TrashIcon size={40} />}
-      value={"Delete Last Node"}
+      icon={<TrashIcon size={30} />}
+      value={"Delete"}
     />
   );
   // return (

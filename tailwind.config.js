@@ -24,6 +24,20 @@ export default {
           "50%": { transform: "translateX(5px)" },
           "100%": { transform: "translateX(0px)" },
         },
+        nodeSlide: {
+          "0%": { transform: "translateX(-15px)" },
+          "50%": { transform: "translateX(30px)" },
+          "100%": { transform: "translateX(25px)" },
+        },
+        nodeSlideUp: {
+          "0%": { transform: "translateY(-1px)" },
+          "100%": { transform: "translateY(0px)" },
+        },
+        nodeSlideDown: {
+          "0%": { transform: "translateY(0px)" },
+          "50%": { transform: "rotate(45deg)" },
+          "100%": { transform: "translateY(40px) rotate(45deg)" },
+        },
         fade: {
           "0%": { opacity: 0 },
           "50%": { opacity: 0.5 },
@@ -42,6 +56,9 @@ export default {
         traverAnimate: "traver 1s ease-in-out ",
         fadeAnimation: "fade 1s ease-in-out ",
         flashAnimation: "flash 1s ease-in-out ",
+        nodeSlideAnimation: "nodeSlide 1s ease-in-out infinite",
+        nodeSlideUpAnimation: "nodeSlideUp 1s ease-in-out infinite",
+        nodeSlideDownAnimation: "nodeSlideDown 1s ease-in-out infinite",
       },
     },
   },

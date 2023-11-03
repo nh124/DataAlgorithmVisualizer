@@ -8,13 +8,16 @@ const Button = ({
   icon: React.ReactElement;
 }) => {
   return (
-    <div className="flex h-[80px] items-center gap-3 text-white w-fit justify-center">
+    <div className="flex h-fit items-center gap-3 text-white w-fit justify-center hover:scale-110 group relative max-md:scale-75">
       <button
-        className="hover:cursor-pointer h-auto bg-[#52796f] rounded-sm py-2 shadow-lg hover:scale-105 ease-in-out duration-300 px-3"
+        className="bg-[#2f3e46] group-hover:bg-[#253741] px-2 py-2 relative z-10 rounded-lg"
         onClick={action}
       >
-        {icon}
+        {!icon ? value : icon}
       </button>
+      <div className="flex absolute bottom-0 overflow-hidden group-hover:translate-y-[1.3rem] ease-in-out duration-300 text-xs w-[100px] justify-center items-center opacity-0 group-hover:opacity-100">
+        <span>{value}</span>
+      </div>
     </div>
   );
 };

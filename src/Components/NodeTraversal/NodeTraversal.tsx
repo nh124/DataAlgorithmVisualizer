@@ -103,6 +103,7 @@ const NodeTraversal = ({
           {nodes.map((value, index) => {
             return (
               <NodeContext.Provider
+                key={index}
                 value={{
                   node: value.value,
                   nodeStatus: value.isVisible,

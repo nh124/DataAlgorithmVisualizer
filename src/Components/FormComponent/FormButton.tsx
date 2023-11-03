@@ -11,7 +11,7 @@ const FormButton = ({
     <form
       action=""
       onSubmit={handleSubmit}
-      className="flex h-[80px] items-center gap-3 px-4 text-white"
+      className="flex h-fit items-center gap-3 px-2 text-white max-md:scale-75 max-md:px-1"
     >
       <div className="flex flex-row gap-3">
         <input

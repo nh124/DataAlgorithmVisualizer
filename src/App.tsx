@@ -13,7 +13,8 @@ import GenerateLinkedList from "./Functions/GenerateLinkedList/GenerateLinkedLis
 import { TiThMenuOutline } from "react-icons/ti";
 import MenuIcon from "./Components/Icons/MenuIcon.tsx";
 import TrashIcon from "./Components/Icons/TrashIcon.tsx";
-
+import NodeIcon from "./Components/Icons/NodeIcon.tsx";
+import { AiFillCaretDown } from "react-icons/ai";
 let ll = new linkedList<NodeType>();
 const App = () => {
   const [addOrDelete, setAddOrDelete] = useState(false);
@@ -44,7 +45,7 @@ const App = () => {
   return (
     <div className="flex flex-row relative">
       <div
-        className="absolute top-5 left-5 hover:scale-125 duration-300 z-10"
+        className="absolute top-8 left-5 hover:scale-125 duration-300 z-10"
         onClick={() => setShowMenu(!showMenu)}
       >
         <MenuIcon size={30} showMenu={showMenu} />
@@ -57,49 +58,43 @@ const App = () => {
           <StoreIndexContext.Provider
             value={{ foundIndex, setFoundIndex, Animate, setAnimate }}
           >
-            <div className="w-full h-auto flex flex-row items-center gap-3 bg-[#2f3e46] flex-wrap">
+            <div className="w-full h-auto min-h-[100px] flex flex-row items-center gap-1 bg-[#2f3e46] flex-wrap relative">
               <div className="w-[30px] h-[30px] ml-5"></div>
-              <h2 className="text-white text-xl font-bold">Linked List</h2>
-              <div className="flex flex-row">
-                <AddNode ll={ll} setNodes={setNodes} nodes={nodes} />
-                <FindValue
-                  ll={ll}
-                  setStartAnimation={setStartAnimation}
-                  input={input}
-                  setInput={setInput}
-                />
-              </div>
-              <div className="flex flex-row gap-1">
-                <DeleteNode
-                  ll={ll}
-                  setNodes={setNodes}
-                  nodes={nodes}
-                  setStartAnimation={setStartAnimation}
-                />
-                <Button
-                  action={() => GenerateNewLinkkedList("update")}
-                  icon={<TrashIcon size={40} />}
-                ></Button>
-                <Button
-                  action={() => GenerateNewLinkkedList("clear")}
-                  icon={<TrashIcon size={40} />}
-                ></Button>
-                {/* <Button
-                  action={() => test()}
-                  icon={<TrashIcon size={40} />}
-                ></Button>
-                <Button
-                  action={() => test()}
-                  icon={<TrashIcon size={40} />}
-                ></Button>
-                <Button
-                  action={() => test()}
-                  icon={<TrashIcon size={40} />}
-                ></Button>
-                <Button
-                  action={() => test()}
-                  icon={<TrashIcon size={40} />}
-                ></Button> */}
+              <h2 className="text-white text-xl font-bold ml-3">Linked List</h2>
+              <div className="flex flex-row max-md:w-[55%] h-auto flex-wrap">
+                <div className="flex flex-row z-20">
+                  <AddNode ll={ll} setNodes={setNodes} nodes={nodes} />
+                  <FindValue
+                    ll={ll}
+                    setStartAnimation={setStartAnimation}
+                    input={input}
+                    setInput={setInput}
+                  />
+                  <Button
+                    action={() => GenerateNewLinkkedList("update")}
+                    icon={<AiFillCaretDown size={20} />}
+                    // value="More"
+                  ></Button>
+                </div>
+
+                <div className="left-0 w-full flex flex-row max-sm:absolute max-sm:translate-y-[70px] max-sm:z-10 max-sm:px-3 max-sm:py-4 bg-[#2f3e46]">
+                  <DeleteNode
+                    ll={ll}
+                    setNodes={setNodes}
+                    nodes={nodes}
+                    setStartAnimation={setStartAnimation}
+                  />
+                  <Button
+                    action={() => GenerateNewLinkkedList("update")}
+                    icon={<NodeIcon size={30} status={"create"} />}
+                    value="New Linked List"
+                  ></Button>
+                  <Button
+                    action={() => GenerateNewLinkkedList("clear")}
+                    icon={<NodeIcon size={30} status={"clear"} />}
+                    value="Clear Linked List"
+                  ></Button>
+                </div>
               </div>
             </div>
 
