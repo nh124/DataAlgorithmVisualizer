@@ -98,8 +98,8 @@ const NodeTraversal = ({
 
   return (
     <div className="w-full h-full bg-[#354f52] flex flex-col justify-start items-start py-10 px-10 text-[#84a98c] relative">
-      <div className="flex flex-col">
-        <div className="flex flex-row px-5 py-3 rounded-lg max-sm:max-w-[400px] max-md:max-w-[600px] max-lg:max-w-[800px] max-xl:max-w-full overflow-x-auto whitespace-nowrap h-[150px] ">
+      <div className="w-full flex flex-col max-sm:w-[400px] max-md:w-[600px] max-lg:w-[800px] h-auto">
+        <div className="flex flex-row px-5 py-3 rounded-lg max-sm:max-w-[400px] max-md:max-w-[600px] max-lg:max-w-[800px] max-xl:max-w-full overflow-x-auto whitespace-nowrap h-[170px] ">
           {nodes.map((value, index) => {
             return (
               <NodeContext.Provider

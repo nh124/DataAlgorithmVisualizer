@@ -1,11 +1,14 @@
-# React + TypeScript + Vite
+# Algorithm Visualizer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+##### This is a algorithm visualizer that help visualize algorithm such as Linkedlist, Binary Search Tree, Sorting, Pathfinding, etc.
 
-Currently, two official plugins are available:
+## Who is this for?
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project is a instructive platform where students, teachers, and professionals can come and learn the different algorithms.
+
+- The platform help break down each step of algorithm, and creats a visuals at the same time.
+- Code is generated as the each algorithm plays, and creats explaineations for each step.
+- This project currently consists of the linkedlist Algorithm, more algorithms will be added.
 
 ## Expanding the ESLint configuration
 
@@ -25,3 +28,13 @@ If you are developing a production application, we recommend updating the config
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
 - Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+<!-- h1 => Title and h2 => Sub Title -->
+<!-- paragraph explaining what this is doing -->
+<!-- Video -->
+<!-- Instalation Instructions => maybe -->
+<!-- Contributing -->
+<!-- Expectations for Contributing -->
+<!-- Found a bug -->
+<!-- Known issues -->
+<!-- Feature Implementations -->
