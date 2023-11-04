@@ -60,6 +60,11 @@ export default {
         nodeSlideUpAnimation: "nodeSlideUp 1s ease-in-out infinite",
         nodeSlideDownAnimation: "nodeSlideDown 1s ease-in-out infinite",
       },
+      extend: {
+        transitionProperty: {
+          height: "height",
+        },
+      },
     },
   },
   plugins: [],

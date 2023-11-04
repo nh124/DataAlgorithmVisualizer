@@ -8,16 +8,24 @@ const Button = ({
   icon: React.ReactElement;
 }) => {
   return (
-    <div className="flex h-fit items-center gap-3 text-white w-fit justify-center hover:scale-110 group relative max-md:scale-75">
+    <div
+      className={`flex h-fit items-center gap-3 text-white w-fit justify-center hover:scale-110 group relative max-md:scale-75 max-md:inline ${
+        value === "responsive" ? "hidden" : ""
+      }`}
+    >
       <button
-        className="bg-[#2f3e46] group-hover:bg-[#253741] px-2 py-2 relative z-10 rounded-lg"
+        className="max-md:bg-[#253741] px-2 py-2 relative z-10 rounded-lg max-md:scale-100"
         onClick={action}
       >
         {!icon ? value : icon}
       </button>
-      <div className="flex absolute bottom-0 overflow-hidden group-hover:translate-y-[1.3rem] ease-in-out duration-300 text-xs w-[100px] justify-center items-center opacity-0 group-hover:opacity-100">
-        <span>{value}</span>
-      </div>
+      {value !== "responsive" && (
+        <div
+          className={`absolute max-md:left-0 bottom-0 overflow-hidden group-hover:translate-y-[1.3rem] ease-in-out duration-300 text-xs inline-block w-auto justify-start items-start opacity-0 group-hover:opacity-100 whitespace-nowrap`}
+        >
+          <span>{value}</span>
+        </div>
+      )}
     </div>
   );
 };

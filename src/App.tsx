@@ -25,6 +25,7 @@ const App = () => {
   const [Animate, setAnimate] = useState(false);
   const [input, setInput] = useState(-1);
   const [showMenu, setShowMenu] = useState(false);
+  const [showAll, setShowAll] = useState(false);
 
   const GenerateNewLinkkedList = (action: string) => {
     if (action === "update") {
@@ -45,24 +46,32 @@ const App = () => {
   return (
     <div className="flex flex-row relative">
       <div
-        className="absolute top-8 left-5 hover:scale-125 duration-300 z-10"
+        className="absolute top-8 left-5 hover:scale-125 duration-300 z-40"
         onClick={() => setShowMenu(!showMenu)}
       >
         <MenuIcon size={30} showMenu={showMenu} />
       </div>
       <SidePanel showMenu={showMenu} />
-      <div className="flex flex-col w-full h-screen">
+      <div className="flex flex-col w-full h-screen relative">
         <SlideContext.Provider
           value={{ addOrDelete, setAddOrDelete, slideX, setSlideX }}
         >
           <StoreIndexContext.Provider
             value={{ foundIndex, setFoundIndex, Animate, setAnimate }}
           >
-            <div className="w-full h-auto min-h-[100px] flex flex-row items-center gap-1 bg-[#2f3e46] flex-wrap relative">
+            <div
+              className={`w-full ${
+                showAll
+                  ? "transition-height max-sm:h-[200px] max-md:h-[200px] duration-300 ease-in-out items-start"
+                  : "transition-height h-auto duration-300 ease-in-out items-center"
+              }  min-h-[100px] flex flex-row  gap-1 bg-[#2f3e46] flex-wrap py-8 duration-300`}
+            >
               <div className="w-[30px] h-[30px] ml-5"></div>
-              <h2 className="text-white text-xl font-bold ml-3">Linked List</h2>
-              <div className="flex flex-row max-md:w-[55%] h-auto flex-wrap">
-                <div className="flex flex-row z-20">
+              <h2 className="text-white text-xl font-bold ml-3 max-sm:text-base">
+                Linked List
+              </h2>
+              <div className="flex flex-row h-auto flex-wrap">
+                <div className="flex flex-row items-center bg-[#2f3e46]">
                   <AddNode ll={ll} setNodes={setNodes} nodes={nodes} />
                   <FindValue
                     ll={ll}
@@ -71,13 +80,20 @@ const App = () => {
                     setInput={setInput}
                   />
                   <Button
-                    action={() => GenerateNewLinkkedList("update")}
-                    icon={<AiFillCaretDown size={20} />}
-                    // value="More"
+                    action={() => setShowAll(!showAll)}
+                    icon={
+                      <AiFillCaretDown
+                        size={20}
+                        className={`${
+                          showAll ? "rotate-180" : ""
+                        } duration-300`}
+                      />
+                    }
+                    value="responsive"
                   ></Button>
                 </div>
 
-                <div className="left-0 w-full flex flex-row max-sm:absolute max-sm:translate-y-[70px] max-sm:z-10 max-sm:px-3 max-sm:py-4 bg-[#2f3e46]">
+                <div className="flex flex-row bg-[#2f3e46] max-md:absolute top-[100px] max-md:w-full max-md:left-0 h-auto px-4">
                   <DeleteNode
                     ll={ll}
                     setNodes={setNodes}

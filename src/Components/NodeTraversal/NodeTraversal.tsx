@@ -97,9 +97,9 @@ const NodeTraversal = ({
   }, [startAnimation, currentIndex]);
 
   return (
-    <div className="w-full h-full bg-[#354f52] flex flex-col justify-start items-start py-10 px-10 text-[#84a98c] relative overflow-auto">
+    <div className="w-full h-full bg-[#354f52] flex flex-col justify-start items-start py-10 px-10 text-[#84a98c] relative">
       <div className="flex flex-col">
-        <div className="flex flex-row">
+        <div className="flex flex-row px-5 py-3 rounded-lg max-sm:max-w-[400px] max-md:max-w-[600px] max-lg:max-w-[800px] max-xl:max-w-full overflow-x-auto whitespace-nowrap h-[150px] ">
           {nodes.map((value, index) => {
             return (
               <NodeContext.Provider
