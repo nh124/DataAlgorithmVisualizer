@@ -15,7 +15,7 @@ const AddNode = ({
 }) => {
   const [inputNode, setInputNode] = useState("");
   const { setAddOrDelete, setSlideX, slideX } = useContext(SlideContext);
-  const handleSubmit = (event: React.FormEvent<HTMLInputElement>) => {
+  const handleSubmit = (event: any) => {
     event.preventDefault();
     if (nodes.length <= 13) {
       ll.add({
@@ -25,25 +25,21 @@ const AddNode = ({
       setNodes(ll.display());
       setInputNode("");
       setAddOrDelete(true);
-      // let startAddAnimation = setTimeout(() => {
-      //   setAddOrDelete();
-      // }, 500);
       if (nodes.length >= 1) {
         setSlideX(slideX + 80);
       }
-      return () => clearTimeout(startAddAnimation);
     } else {
       alert("Max limit reached");
     }
   };
 
-  const onChange = (event: React.FormEvent<HTMLInputElement>) => {
+  const onChange = (event: any) => {
     setInputNode((event.target as HTMLInputElement).value);
   };
   return (
     <FormButton
       handleSubmit={handleSubmit}
-      inputNode={inputNode}
+      inputNode={parseInt(inputNode)}
       onChange={onChange}
     />
   );

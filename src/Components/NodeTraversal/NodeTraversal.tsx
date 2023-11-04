@@ -29,7 +29,7 @@ const NodeTraversal = ({
   });
   const [currentIndex, setCurrentIndex] = useState(-1);
   const [counter, setCounter] = useState(0);
-  const [nodeStatusRight, setNodeStatusRight] = useState("T");
+  const [nodeStatusRight] = useState("T"); //   const [nodeStatusRight, setNodeStatusRight] = useState("T");
   const [nodeStatusLeft, setNodeStatusLeft] = useState("H");
 
   const updateStyleForArrow = (direction: string, distance: number) => {
@@ -66,7 +66,7 @@ const NodeTraversal = ({
           if (addOrDelete)
             setNodeStatusLeft(
               nodes[counter].value.toString() +
-                `${nodes[counter].value === parseInt(input) ? "=" : "=/="}` +
+                `${nodes[counter].value === input ? "=" : "=/="}` +
                 input
             );
           if (!addOrDelete)

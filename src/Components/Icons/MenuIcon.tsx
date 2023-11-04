@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const MenuIcon = ({ size, showMenu }: { size: number; showMenu: boolean }) => {
   return (
     <button

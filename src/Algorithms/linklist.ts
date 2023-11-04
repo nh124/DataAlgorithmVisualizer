@@ -52,6 +52,9 @@ export default class LinkedList<T> {
     }
 
     while (current.next?.next !== null) {
+      if (current.next === null) {
+        break;
+      }
       current = current.next;
     }
     current.next = null;
@@ -65,10 +68,8 @@ export default class LinkedList<T> {
 
     let current = this.head;
     this.head = current.next;
-    current = null;
   }
   reverse() {
-    // if (this.head === null) return;
     let prev = null;
     let current = this.head;
     let nextNode;
@@ -80,19 +81,28 @@ export default class LinkedList<T> {
     }
     this.head = prev;
   }
+  compare(obj1: any, obj2: any): boolean {
+    if (obj1.value === obj2.value) return true;
+    return false;
+  }
 
   search(val: T): number {
     let current = this.head;
     let index = 0;
 
     while (current !== null) {
-      if (current.val.value === parseInt(val)) {
+      if (this.compare(current.val, val)) {
         return index;
       }
       current = current.next;
       index++;
     }
     return -1;
+  }
+
+  clear() {
+    this.head = null;
+    this.tail = null;
   }
 
   display(): T[] {

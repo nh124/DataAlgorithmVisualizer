@@ -41,17 +41,18 @@ const FindValue = ({
       clearTimeout(timeout);
     };
   };
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: any) => {
     event.preventDefault();
-    let index = ll.search(input);
+    let index = ll.search({ value: input, isVisible: true });
+
     index === -1
       ? alert(`${input} does not exist`)
       : setDuration((index + 1) * 1000);
     setFoundIndex(index);
   };
 
-  const onChange = (e) => {
-    setInput(e.target.value);
+  const onChange = (e: any) => {
+    setInput(parseInt(e.target.value));
   };
 
   return (

@@ -3,7 +3,7 @@ const FormButton = ({
   inputNode,
   onChange,
 }: {
-  handleSubmit: (event: React.FormEvent) => void;
+  handleSubmit: (event: any) => void;
   inputNode: number;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }) => {
@@ -24,10 +24,6 @@ const FormButton = ({
           required
           max="10"
         />
-        {/* <input
-          type="submit"
-          className="hover:cursor-pointer w-fit px-2 h-auto bg-[#52796f] rounded-sm py-2 shadow-lg hover:scale-105 ease-in-out duration-300 h-[40px]"
-        /> */}
       </div>
     </form>
   );

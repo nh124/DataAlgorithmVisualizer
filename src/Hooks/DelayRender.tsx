@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
-function useDelayRender(delayTime) {
+function useDelayRender(delayTime: number) {
   const [shouldRender, setShouldRender] = useState(false);
 
   useEffect(() => {

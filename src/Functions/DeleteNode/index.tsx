@@ -1,5 +1,4 @@
-// import React, { useState } from "react";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import SlideContext from "../../Context/SlideContext";
 import Button from "../../Components/ButtonComponent/Button";
 import { NodeType } from "../../Algorithms/NodeType";
@@ -51,11 +50,6 @@ const DeleteNode = ({
       value={"Delete"}
     />
   );
-  // return (
-  //   <div className="w-fit h-[80px] flex items-end py-4" onClick={() => }>
-  //     <TrashIcon size={40} />
-  //   </div>
-  // );
 };
 
 export default DeleteNode;

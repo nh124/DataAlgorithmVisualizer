@@ -5,7 +5,6 @@ import { useContext } from "react";
 import NodeContext from "../../Context/NodeContext.tsx";
 const Node = ({
   Arrow,
-  startAnimation,
 }: {
   Arrow: React.ReactNode;
   startAnimation: boolean;

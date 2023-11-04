@@ -10,12 +10,10 @@ import FindValue from "./Functions/FindValue/FindValue.tsx";
 import StoreIndexContext from "./Context/StoreIndexContext.tsx";
 import Button from "./Components/ButtonComponent/Button.tsx";
 import GenerateLinkedList from "./Functions/GenerateLinkedList/GenerateLinkedList.tsx";
-import { TiThMenuOutline } from "react-icons/ti";
 import MenuIcon from "./Components/Icons/MenuIcon.tsx";
-import TrashIcon from "./Components/Icons/TrashIcon.tsx";
 import NodeIcon from "./Components/Icons/NodeIcon.tsx";
 import { AiFillCaretDown } from "react-icons/ai";
-let ll = new linkedList<NodeType>();
+let ll: linkedList<NodeType> = new linkedList<NodeType>();
 const App = () => {
   const [addOrDelete, setAddOrDelete] = useState(false);
   const [nodes, setNodes] = useState<NodeType[]>([]);
@@ -29,19 +27,12 @@ const App = () => {
 
   const GenerateNewLinkkedList = (action: string) => {
     if (action === "update") {
-      const newLL = GenerateLinkedList(10);
-      ll = newLL;
-      setNodes(ll.display());
+      const newLLArray = GenerateLinkedList(ll, 10);
+      if (newLLArray !== undefined) setNodes(newLLArray);
     } else if (action === "clear") {
-      ll = new linkedList<NodeType>();
+      ll.clear();
       setNodes(ll.display());
     }
-  };
-  const test = () => {
-    let ll = new linkedList<NodeType>();
-    ll = GenerateLinkedList(10);
-    ll.reverse();
-    console.log(ll.display());
   };
   return (
     <div className="flex flex-row relative">
@@ -128,10 +119,3 @@ const App = () => {
 };
 
 export default App;
-
-{
-  /* <Button action={() => test()} value="Test"></Button>
-<Button action={() => test()} value="Detect Cycle"></Button>
-<Button action={() => test()} value="Merge Lists"></Button>
-<Button action={() => test()} value="Reorder"></Button> */
-}
