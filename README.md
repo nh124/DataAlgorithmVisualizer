@@ -10,6 +10,8 @@ This project is a instructive platform where students, teachers, and professiona
 - Code is generated as the each algorithm plays, and creats explaineations for each step.
 - This project currently consists of the linkedlist Algorithm, more algorithms will be added.
 
+![](<https://github.com/nh124/DataAlgorithmVisualizer/blob/master/src/assets/2023-11-04%2010-35-01%20(online-video-cutter.com).mp4>)
+
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
