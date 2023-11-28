@@ -1,8 +1,6 @@
-import { BsArrow90DegUp } from "react-icons/bs";
-import { BsArrow90DegLeft } from "react-icons/bs";
+import { BsArrow90DegUp, BsArrow90DegLeft } from "react-icons/bs";
 import Node from "../Node/index.tsx";
-import React, { useEffect, useState } from "react";
-import { useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import SlideContext from "../../Context/SlideContext.tsx";
 import ArrowComponent from "../ArrowComponent/ArrowComponent.tsx";
 import { NodeType } from "../../Algorithms/NodeType.ts";
